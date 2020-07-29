@@ -1,0 +1,23 @@
+{
+    "name": "cli-sequlize",
+    "version": "1.0.0",
+    "main": "01.js",
+
+
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "sequelize-cli": "^6.2.0"
+    },
+    "dependencies": {
+        "@caporal/core": "^2.0.2",
+        "mysql2": "^2.1.0",
+        "sequelize": "^6.3.3",
+        "sqlite3": "^5.0.0"
+    }
+}
