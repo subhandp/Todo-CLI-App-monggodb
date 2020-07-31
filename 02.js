@@ -1,32 +1,20 @@
 const { program } = require("@caporal/core")
-const { sequelize, Todo } = require('./sequelizeModel.js');
+const { Todos } = require('./todosSchema.js')
+const { todoList } = require('./01.js')
 
 
 const todoAdd = async(todo) => {
-    const t = await sequelize.transaction();
+    const todoObj = new Todos({ activity: todo });
     try {
-
-        const result = await sequelize.transaction(async(t) => {
-            const list = await Todo.create({
-                activity: todo
-            }, { transaction: t });
-            return list;
-
+        await todoObj.save().then((v) => {
+            console.log('<Berhasil tambah data>')
+            todoList();
         });
-
-        await t.commit().then((val) => {
-            console.log('Berhasil tambah data')
-        });
-
-    } catch (error) {
-
-        await t.rollback();
+    } catch (err) {
+        console.log(err)
         console.log('Kesalahan, data gagal ditambahkan')
-
     }
-
 }
-
 
 program
     .command("add", "add todo to the list")

@@ -1,25 +1,15 @@
 const { program } = require("@caporal/core")
-const { sequelize, Todo } = require('./sequelizeModel.js');
+const { Todos } = require('./todosSchema.js')
+const { todoList } = require('./01.js')
 
 const todoUpdate = async(todo, todoId) => {
-
-    const t = await sequelize.transaction();
     try {
-        const result = await sequelize.transaction(async(t) => {
-
-            await Todo.update({ activity: todo }, {
-                where: {
-                    id: todoId
-                }
-            }, { transaction: t });
-
-        });
-        await t.commit().then((val) => {
-            console.log("Data berhasil di update")
-        });
-    } catch (error) {
-        await t.rollback();
-        console.log('Kesalahan, data gagal di update')
+        await Todos.findByIdAndUpdate(todoId, todo).exec();
+        console.log("<Data berhasil di update>");
+        todoList();
+    } catch (err) {
+        console.log(err)
+        console.log('Kesalahan, data gagal di update');
     }
 
 };
@@ -31,8 +21,9 @@ program
     .argument("<text>", "New activity")
 
 .action(({ logger, args, options }) => {
-    todoUpdate(args.text, args.todoId)
+    todoUpdate({ activity: args.text }, args.todoId)
 })
 
 
 program.run()
+module.exports = { todoUpdate }

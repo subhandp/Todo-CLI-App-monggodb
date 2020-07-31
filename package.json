@@ -1,23 +1,26 @@
 {
-    "name": "cli-sequlize",
-    "version": "1.0.0",
-    "main": "01.js",
-
-
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "description": "",
-    "devDependencies": {
-        "sequelize-cli": "^6.2.0"
-    },
-    "dependencies": {
-        "@caporal/core": "^2.0.2",
-        "mysql2": "^2.1.0",
-        "sequelize": "^6.3.3",
-        "sqlite3": "^5.0.0"
-    }
+  "name": "cli-sequlize-mongose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01.js",
+  "dependencies": {
+    "@caporal/core": "^2.0.2",
+    "mongoose": "^5.9.26",
+    "mysql2": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subhandp/Todo-CLI-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/subhandp/Todo-CLI-App/issues"
+  },
+  "homepage": "https://github.com/subhandp/Todo-CLI-App#readme"
 }

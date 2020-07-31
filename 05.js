@@ -1,5 +1,5 @@
 const { program } = require("@caporal/core")
-const { sequelize, Todo } = require('./sequelizeModel.js');
+const { Todos } = require('./todosSchema.js')
 
 const todoTruncate = () => {
 
@@ -11,18 +11,16 @@ const todoTruncate = () => {
     readline.question('Are you sure want to delete? [y/N]', (ans) => {
         if (ans.toLowerCase() == 'y') {
             try {
-
-                (async() => {
-                    await Todo.destroy({
-                        truncate: true
-                    }).then((val) => {
-                        console.log("Todos berhasil dibersihkan")
-                    });
-                })()
-
+                Todos.deleteMany({}, function(err) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log('<Berhasil hapus semua data>')
+                    }
+                });
 
             } catch (err) {
-                console.log('Kesalahan, Todos gagl dibersihkan')
+                console.log('Kesalahan, Todos gagal dibersihkan')
             }
         } else {
             return
@@ -34,7 +32,6 @@ const todoTruncate = () => {
 }
 
 program
-
     .command("clear", "Clear todos list")
     .action(({ logger, args, options }) => {
         console.log(todoTruncate());
